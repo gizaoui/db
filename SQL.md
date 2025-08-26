@@ -1,3 +1,95 @@
 # SQL
 
 
+## 1. Création des tables
+
+```sql
+DROP TABLE IF EXISTS "T1";
+DROP TABLE IF EXISTS "T2";
+CREATE TABLE "T1" ("ID"	INTEGER,"STR" TEXT);
+CREATE TABLE "T2" ("ID"	INTEGER,"STR" TEXT);
+```
+
+### 1.1 Table *T1*
+
+```sql
+DROP TABLE IF EXISTS "T1";
+CREATE TABLE "T1" ("ID"	INTEGER,"STR" TEXT);
+```
+
+### 1.2 Table *T2*
+
+```sql
+DROP TABLE IF EXISTS "T2";
+CREATE TABLE "T2" ("ID"	INTEGER,"STR" TEXT);
+```
+
+
+## 2. Sélection des données
+
+### 2.1.
+
+![01](pic/01.png)
+
+```sql
+SELECT T1.STR "T1", T2.STR "T2" FROM T1 LEFT JOIN T2 ON T1.ID=T2.ID ORDER BY T1.STR, T2.STR;
+```
+
+### 2.2.
+
+![02](pic/02.png)
+
+```sql
+SELECT T1.STR "T1", T2.STR "T2" FROM T1 RIGHT JOIN T2 ON T1.ID=T2.ID ORDER BY T2.STR, T1.STR;
+```
+
+### 2.3.
+
+![03](pic/03.png)
+
+```sql
+SELECT T1.STR "T1", T2.STR "T2" FROM T1 INNER JOIN T2 ON T1.ID=T2.ID ORDER BY T1.STR, T2.STR;
+```
+
+### 2.4.
+
+![04](pic/04.png)
+
+```sql
+SELECT T1.STR "T1", T2.STR "T2" FROM T1 LEFT JOIN T2 ON T1.ID=T2.ID WHERE T2.STR IS NULL ORDER BY T1.STR, T2.STR;
+```
+
+### 2.5.
+
+![05](pic/05.png)
+
+```sql
+SELECT T1.STR "T1", T2.STR "T2" FROM T1 RIGHT JOIN T2 ON T1.ID=T2.ID WHERE T1.STR IS NULL ORDER BY T2.STR, T1.STR;
+```
+
+### 2.6.
+
+![06](pic/06.png)
+
+```sql
+SELECT T1.STR "T1", T2.STR "T2" FROM T1 FULL OUTER JOIN T2 ON T1.ID=T2.ID ORDER BY T1.STR, T2.STR;
+```
+
+### 2.7.
+
+![06](pic/07.png)
+
+```sql
+SELECT T1.STR "T1", T2.STR "T2" FROM T1 FULL OUTER JOIN T2 ON T1.ID=T2.ID WHERE (T1.STR IS NULL OR T2.STR IS NULL) ORDER BY T1.STR, T2.STR;
+```
+
+
+
+
+
+
+
+
+
+
+

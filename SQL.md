@@ -1,7 +1,8 @@
 # SQL
 
+## 1. Diagrammes à deux cercle
 
-## 1. Création des tables
+### 1.1. Création des tables
 
 ```sql
 DROP TABLE IF EXISTS "T1";
@@ -10,24 +11,19 @@ CREATE TABLE "T1" ("ID"	INTEGER,"STR" TEXT);
 CREATE TABLE "T2" ("ID"	INTEGER,"STR" TEXT);
 ```
 
-### 1.1 Table *T1*
+Les données communes sont associées deux à deux pour éviter une duplication liée au produit cartésien.
+
+![00](pic/00.png)
 
 ```sql
-DROP TABLE IF EXISTS "T1";
-CREATE TABLE "T1" ("ID"	INTEGER,"STR" TEXT);
-```
-
-### 1.2 Table *T2*
-
-```sql
-DROP TABLE IF EXISTS "T2";
-CREATE TABLE "T2" ("ID"	INTEGER,"STR" TEXT);
+INSERT INTO T1 VALUES (1, 'A'), (2, 'B'), (3, 'C'), (4, 'D'), (5, 'E'), (6, 'F'), (7, 'G');
+INSERT INTO T2 VALUES (8, 'H'), (9, 'I'), (3, 'J'), (4, 'K'), (5, 'L'), (13, 'M'), (14, 'N');
 ```
 
 
-## 2. Sélection des données
+### 1.2. Sélection des données
 
-### 2.1.
+#### 1.2.1. Données de la table *T1*
 
 ![01](pic/01.png)
 
@@ -35,7 +31,7 @@ CREATE TABLE "T2" ("ID"	INTEGER,"STR" TEXT);
 SELECT T1.STR "T1", T2.STR "T2" FROM T1 LEFT JOIN T2 ON T1.ID=T2.ID ORDER BY T1.STR, T2.STR;
 ```
 
-### 2.2.
+#### 1.2.2. Données de la table *T2*
 
 ![02](pic/02.png)
 
@@ -43,7 +39,7 @@ SELECT T1.STR "T1", T2.STR "T2" FROM T1 LEFT JOIN T2 ON T1.ID=T2.ID ORDER BY T1.
 SELECT T1.STR "T1", T2.STR "T2" FROM T1 RIGHT JOIN T2 ON T1.ID=T2.ID ORDER BY T2.STR, T1.STR;
 ```
 
-### 2.3.
+#### 1.2.3. Données communes des table *T1* et *T2* 
 
 ![03](pic/03.png)
 
@@ -51,7 +47,7 @@ SELECT T1.STR "T1", T2.STR "T2" FROM T1 RIGHT JOIN T2 ON T1.ID=T2.ID ORDER BY T2
 SELECT T1.STR "T1", T2.STR "T2" FROM T1 INNER JOIN T2 ON T1.ID=T2.ID ORDER BY T1.STR, T2.STR;
 ```
 
-### 2.4.
+#### 1.2.4. Données exclusivement liées à la table *T1*
 
 ![04](pic/04.png)
 
@@ -59,7 +55,7 @@ SELECT T1.STR "T1", T2.STR "T2" FROM T1 INNER JOIN T2 ON T1.ID=T2.ID ORDER BY T1
 SELECT T1.STR "T1", T2.STR "T2" FROM T1 LEFT JOIN T2 ON T1.ID=T2.ID WHERE T2.STR IS NULL ORDER BY T1.STR, T2.STR;
 ```
 
-### 2.5.
+#### 1.2.5. Données exclusivement liées à la table *T2*
 
 ![05](pic/05.png)
 
@@ -67,7 +63,7 @@ SELECT T1.STR "T1", T2.STR "T2" FROM T1 LEFT JOIN T2 ON T1.ID=T2.ID WHERE T2.STR
 SELECT T1.STR "T1", T2.STR "T2" FROM T1 RIGHT JOIN T2 ON T1.ID=T2.ID WHERE T1.STR IS NULL ORDER BY T2.STR, T1.STR;
 ```
 
-### 2.6.
+#### 1.2.6. Totalité de la base de données
 
 ![06](pic/06.png)
 
@@ -75,7 +71,7 @@ SELECT T1.STR "T1", T2.STR "T2" FROM T1 RIGHT JOIN T2 ON T1.ID=T2.ID WHERE T1.ST
 SELECT T1.STR "T1", T2.STR "T2" FROM T1 FULL OUTER JOIN T2 ON T1.ID=T2.ID ORDER BY T1.STR, T2.STR;
 ```
 
-### 2.7.
+#### 1.2.7. Données exclusivement liées à la table *T1* ou à la table *T2*
 
 ![06](pic/07.png)
 
@@ -85,9 +81,59 @@ SELECT T1.STR "T1", T2.STR "T2" FROM T1 FULL OUTER JOIN T2 ON T1.ID=T2.ID WHERE 
 
 
 
+## 2. Diagrammes à trois cercle
 
 
 
+### 2.1. Création des tables
+
+```sql
+DROP TABLE IF EXISTS "T1";
+DROP TABLE IF EXISTS "T2";
+DROP TABLE IF EXISTS "T3";
+CREATE TABLE "T1" ("ID"	INTEGER,"STR" TEXT);
+CREATE TABLE "T2" ("ID"	INTEGER,"STR" TEXT);
+CREATE TABLE "T3" ("ID"	INTEGER,"STR" TEXT);
+```
+
+Les données communes sont associées deux à deux pour éviter une duplication liée au produit cartésien.
+
+![08](pic/08.png)
+
+```sql
+INSERT INTO T1 VALUES (1, 'A'), (2, 'B'), (3, 'C'), (4, 'D'),  (5, 'E'),  (6, 'F'), (7, 'G'), (8, 'H');
+INSERT INTO T2 VALUES (9, 'I'), (10, 'J'), (11, 'K'), (4, 'L'), (5, 'M'), (6, 'N'), (15, 'O'), (16, 'P');
+INSERT INTO T3 VALUES (17, 'Q'), (18, 'R'), (19, 'S'),  (7, 'T'), (8, 'U'), (6, 'V'), (15, 'W'), (16, 'X');
+```
+
+### 2.2. Sélection des données
+
+#### 2.2.1. Données de la table *T1*
+
+![09](pic/09.png)
+
+
+```sql
+SELECT T1.STR "T1", T2.STR "T2", T3.STR "T2"
+FROM T1 
+LEFT JOIN T2 ON T1.ID=T2.ID
+LEFT JOIN T3 ON T1.ID=T3.ID
+ORDER BY T1.STR, T2.STR, T3.STR;
+```
+
+
+#### 2.2.2. Union de l'intersection entre les tables *T1*, *T2* et de l'intersection entre les tables *T1*, *T3* 
+
+![10](pic/10.png)
+
+
+```sql
+SELECT T1.STR "T1", T2.STR "T2", T3.STR "T3"
+FROM T1 
+LEFT JOIN T2 ON T1.ID=T2.ID 
+LEFT JOIN T3 ON T1.ID=T3.ID
+WHERE (T2 IS NOT NULL OR T3 IS NOT NULL);
+```
 
 
 

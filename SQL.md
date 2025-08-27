@@ -32,6 +32,8 @@ Répartition des données via le diagramme de *Venn*.
 
 ![00](pic/00.png)
 
+<br>
+
 ---
 
 <br>
@@ -63,7 +65,7 @@ Résultat :
 | F  |    |
 | G  |    |
 
-<br>
+---
 
 #### 1.2.2. Données de la table *T2*
 
@@ -90,8 +92,7 @@ Résultat :
 |    |	M |
 |    |	N |
 
-<br>
-
+---
 
 #### 1.2.3. Données communes des table *T1* et *T2* 
 
@@ -114,8 +115,7 @@ Résultat :
 | D  |	K |
 | E  |	L |
 
-<br>
-
+---
 
 #### 1.2.4. Données exclusivement liées à la table *T1*
 
@@ -140,8 +140,7 @@ Résultat :
 | F  |    |
 | G  |    |
 
-<br>
-
+---
 
 #### 1.2.5. Données exclusivement liées à la table *T2*
 
@@ -166,7 +165,7 @@ Résultat :
 |    |  M |
 |    |  N |
 
-<br>
+---
 
 #### 1.2.6. Totalité de la base de données
 
@@ -197,7 +196,7 @@ Résultat :
 | F  |    |
 | G  |    |	
 
-<br>
+---
 
 #### 1.2.7. Données exclusivement liées à la table *T1* ou à la table *T2*
 
@@ -226,8 +225,9 @@ Résultat :
 | F  |    |	
 | G  |    |	
 
-<br>
+---
 
+<br>
 
 ## 2. Diagrammes à trois cercle
 

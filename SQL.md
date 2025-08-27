@@ -1,6 +1,6 @@
 # SQL
 
-<br><br>
+<br>
 
 ## 1. Tables temporaires
 
@@ -95,8 +95,9 @@ Donner l'ID, et le Code pour chaque ligne lorsqu'il y a un retour
 
 ---
 
-## 2. Case
+<br>
 
+## 2. Case
 
 ```sql
 DECLARE @test VARCHAR(50) = 'PORTFOLIO_TRANSACTION'
@@ -109,6 +110,8 @@ ELSE 4 END
 Resultat :
 
 ---
+
+<br>
 
 ## 3. Clauses SQL
 
@@ -156,6 +159,8 @@ que sa valeur soit définie ou non. Tous les enregistrements devront être retou
 
 ---
 
+<br>
+
 ## 4. Différence entre DELETE et un TRUNCATE
 
 ```sql
@@ -187,11 +192,12 @@ Donner l'ID, et le Code pour chaque ligne lorsqu'il y a un retour
 
 ---
 
+<br>
+
 ## 5. Jointures
 
 Les requêtes ont été testées avec la base de données [SQLite](https://sqlitebrowser.org/) 
 avec la release [3-13-1](https://sqlitebrowser.org/blog/version-3-13-1-released/).
-
 
 
 ### 5.1. Diagrammes à deux cercle

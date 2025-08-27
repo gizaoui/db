@@ -32,6 +32,9 @@ Répartition des données via le diagramme de *Venn*.
 
 ![00](pic/00.png)
 
+---
+
+<br>
 
 ### 1.2. Sélection des données
 
@@ -60,55 +63,170 @@ Résultat :
 | F  |    |
 | G  |    |
 
+<br>
 
 #### 1.2.2. Données de la table *T2*
 
 ![02](pic/02.png)
 
+Requête :
+
 ```sql
-SELECT T1.STR "T1", T2.STR "T2" FROM T1 RIGHT JOIN T2 ON T1.ID=T2.ID ORDER BY T2.STR, T1.STR;
+SELECT T1.STR "T1", T2.STR "T2" 
+FROM T1 RIGHT 
+JOIN T2 ON T1.ID=T2.ID 
+ORDER BY T2.STR, T1.STR;
 ```
+
+Résultat :
+
+| T1 | T2 |
+| -  | -  |
+|    |	H |
+|    |	I |
+| C  |	J |
+| D  |	K |
+| E  |	L |
+|    |	M |
+|    |	N |
+
+<br>
+
 
 #### 1.2.3. Données communes des table *T1* et *T2* 
 
 ![03](pic/03.png)
 
+Requête :
+
 ```sql
-SELECT T1.STR "T1", T2.STR "T2" FROM T1 INNER JOIN T2 ON T1.ID=T2.ID ORDER BY T1.STR, T2.STR;
+SELECT T1.STR "T1", T2.STR "T2" 
+FROM T1 
+INNER JOIN T2 ON T1.ID=T2.ID 
+ORDER BY T1.STR, T2.STR;
 ```
+
+Résultat :
+
+| T1 | T2 |
+| -  | -  |
+| C  |	J |
+| D  |	K |
+| E  |	L |
+
+<br>
+
 
 #### 1.2.4. Données exclusivement liées à la table *T1*
 
 ![04](pic/04.png)
 
+Requête :
+
 ```sql
-SELECT T1.STR "T1", T2.STR "T2" FROM T1 LEFT JOIN T2 ON T1.ID=T2.ID WHERE T2.STR IS NULL ORDER BY T1.STR, T2.STR;
+SELECT T1.STR "T1", T2.STR "T2" 
+FROM T1 LEFT 
+JOIN T2 ON T1.ID=T2.ID 
+WHERE T2.STR IS NULL 
+ORDER BY T1.STR, T2.STR;
 ```
+
+Résultat :
+
+| T1 | T2 |
+| -  | -  |
+| A  |    |
+| B  |    |
+| F  |    |
+| G  |    |
+
+<br>
+
 
 #### 1.2.5. Données exclusivement liées à la table *T2*
 
 ![05](pic/05.png)
 
+Requête :
+
 ```sql
-SELECT T1.STR "T1", T2.STR "T2" FROM T1 RIGHT JOIN T2 ON T1.ID=T2.ID WHERE T1.STR IS NULL ORDER BY T2.STR, T1.STR;
+SELECT T1.STR "T1", T2.STR "T2" 
+FROM T1
+RIGHT JOIN T2 ON T1.ID=T2.ID 
+WHERE T1.STR IS NULL 
+ORDER BY T2.STR, T1.STR;
 ```
+
+Résultat :
+
+| T1 | T2 |
+| -  | -  |
+|    |  H |
+|    |  I |
+|    |  M |
+|    |  N |
+
+<br>
 
 #### 1.2.6. Totalité de la base de données
 
 ![06](pic/06.png)
 
+Requête :
+
 ```sql
-SELECT T1.STR "T1", T2.STR "T2" FROM T1 FULL OUTER JOIN T2 ON T1.ID=T2.ID ORDER BY T1.STR, T2.STR;
+SELECT T1.STR "T1", T2.STR "T2" 
+FROM T1 
+FULL OUTER JOIN T2 ON T1.ID=T2.ID 
+ORDER BY T1.STR, T2.STR;
 ```
+
+Résultat :
+
+| T1 | T2 |
+| -  | -  |
+|    |  H |
+|    |  I |
+|    |  M |
+|    |  N |
+| A  |    |
+| B  |    |	
+| C  |	J |
+| D  |	K |
+| E  |  L |
+| F  |    |
+| G  |    |	
+
+<br>
 
 #### 1.2.7. Données exclusivement liées à la table *T1* ou à la table *T2*
 
 ![06](pic/07.png)
 
+Requête :
+
 ```sql
-SELECT T1.STR "T1", T2.STR "T2" FROM T1 FULL OUTER JOIN T2 ON T1.ID=T2.ID WHERE (T1.STR IS NULL OR T2.STR IS NULL) ORDER BY T1.STR, T2.STR;
+SELECT T1.STR "T1", T2.STR "T2" 
+FROM T1 
+FULL OUTER JOIN T2 ON T1.ID=T2.ID 
+WHERE (T1.STR IS NULL OR T2.STR IS NULL) 
+ORDER BY T1.STR, T2.STR;
 ```
 
+Résultat :
+
+| T1 | T2 |
+| -  | -  |
+|    |  H |
+|    |  I |
+|    |  M |
+|    |  N |
+| A  |    |
+| B  |    |
+| F  |    |	
+| G  |    |	
+
+<br>
 
 
 ## 2. Diagrammes à trois cercle

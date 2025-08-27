@@ -405,6 +405,52 @@ Résultat :
 
 
 
+## 3. Classement
+
+### 3.1. Création des tables
+
+```sql
+DROP TABLE IF EXISTS "VENTES";
+CREATE TABLE "VENTES" ("ID" INTEGER ,"PRENOM" TEXT ,"NOM" TEXT, "MOIS" INTEGER, "CA" INTEGER);
+INSERT INTO "VENTES" ("ID", "PRENOM", "NOM", "MOIS", "CA") VALUES 
+(1, 'Hélene', 'Bonnet', 5, 2300),
+(2, 'Marie', 'Martin', 5, 2400),
+(3, 'Hélene', 'Bonnet', 6, 2700),
+(4, 'Marie', 'Martin', 6, 2700),
+(5, 'Alexandre', 'Durand', 6, 2900),
+(6, 'Marie', 'Martin', 7, 1200),
+(7, 'Hélene', 'Bonnet', 7, 1200),
+(8, 'Alexandre', 'Durand', 7, 1000);
+```
+
+### 3.2 Classement de données
+
+Classement selon le CA décroissant avec ajout d'un *ROWNUM*.
+
+Requête :
+
+```sql
+SELECT ID, PRENOM, NOM, MOIS, CA,
+ROW_NUMBER () OVER ( ORDER BY CA DESC ) CLASSEMENT
+FROM VENTES;
+```
+
+
+Résultat :
+
+| ID | PRENOM | NOM | MOIS | CA | CLASSEMENT |
+| - | -         | -      | - | -    | - |
+| 5 | Alexandre | Durand | 6 | 2900 | 1 |
+| 3 | Hélene    | Bonnet | 6 | 2700 | 2 |
+| 4 | Marie     | Martin | 6 | 2700 | 3 |
+| 2 | Marie     | Martin | 5 | 2400 | 4 |
+| 1 | Hélene    | Bonnet | 5 | 2300 | 5 |
+| 6 | Marie     | Martin | 7 | 1200 | 6 |
+| 7 | Hélene    | Bonnet | 7 | 1200 | 7 |
+| 8 | Alexandre | Durand | 7 | 1000 | 8 |
+
+
+
 
 
 

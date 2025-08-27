@@ -1,4 +1,191 @@
+# SQL
 
+<br><br>
+
+## 1. Tables temporaires
+
+<br>
+
+### 1.1.  Différence entre une table temporaire locale et une table temporaire globale
+
+Dans SQL Server, les tables temporaires globales sont visibles par toutes les sessions (connexions).
+
+<br>
+
+### 1.2. Ex1
+
+```sql
+CREATE PROCEDURE #Niveau1
+AS
+  -- création de la table
+  CREATE TABLE #test (ID INT IDENTITY, Code VARCHAR(50))
+	
+  -- remplissage de la table
+  INSERT INTO #test (Code)
+  SELECT 'PORTFOLIO'
+ 
+  -- execution d'une sous procédure
+  EXEC #Niveau2
+
+  -- visualisation des données
+  SELECT ID, Code  FROM #test
+GO
+```
+
+```sql
+CREATE PROCEDURE #Niveau2
+AS
+  -- création de la table
+  CREATE TABLE #test (ID INT IDENTITY, Code VARCHAR(50))
+
+  -- remplissage de la table
+  INSERT INTO #test (Code)
+        SELECT 'THIRDPARTY'
+  UNION SELECT 'CLUSTER'
+  UNION SELECT 'ENTITY'
+GO
+```
+
+Les 2 procédures ayant été créées au préalable, j'exécute la procédure #niveau1. 
+Qu'obtiendrai-je comme résultat et expliquer pourquoi ?
+
+Donner l'ID, et le Code pour chaque ligne lorsqu'il y a un retour
+
+<br>
+
+### 1.3. Ex2
+
+
+```sql
+CREATE PROCEDURE #Niveau1
+AS
+  -- création de la table
+  CREATE TABLE #test (ID INT IDENTITY, Code VARCHAR(50))
+	
+  -- remplissage de la table
+  INSERT INTO #test (Code)
+  SELECT 'PORTFOLIO'
+ 
+  -- execution d'une sous procédure
+  EXEC #Niveau2
+
+  -- visualisation des données
+  SELECT ID, Code FROM #test
+GO
+```
+
+```sql
+CREATE PROCEDURE #Niveau2
+AS
+  -- Vidange de la table
+  TRUNCATE TABLE #test
+
+  -- remplissage de la table
+  INSERT INTO #test (Code)
+        SELECT 'THIRDPARTY'
+  UNION SELECT 'CLUSTER'
+  UNION SELECT 'ENTITY'
+GO
+```
+
+Les 2 procédures ayant été créées au préalable, j'exécute la procédure #niveau1.
+Qu'obtiendrai-je comme résultat et expliquer pourquoi ?
+
+Donner l'ID, et le Code pour chaque ligne lorsqu'il y a un retour
+
+---
+
+## 2. Case
+
+
+```sql
+DECLARE @test VARCHAR(50) = 'PORTFOLIO_TRANSACTION'
+SELECT CASE WHEN @test LIKE 'TRANSACTION%' THEN 1
+WHEN @test LIKE 'PORTFOLIO%' THEN 2
+WHEN @test LIKE 'PORTFOLIO%TRANSACTION' THEN 3
+ELSE 4 END
+```
+
+Resultat :
+
+---
+
+## 3. Clauses SQL
+
+### 3.1. Ex1
+
+Dans quel apparaissent les clauses ci-dessous dans un SELECT ?
+
+| Clauses  | Ordre |
+|   -      | -     |
+| FROM     |  2    |
+| ORDER BY |  6    |
+| HAVING   |  5    |
+| GROUP BY |  4    |
+| SELECT   |  1    |
+| WHERE    |  3    |
+
+<br>
+
+### 3.2. Ex2
+
+Dans quel ordre sont évaluées, par le moteur SQL, les clauses ci-dessous, dans un SELECT ?
+
+| Clauses  | Ordre |
+|   -      | -     |
+| FROM     |      |
+| ORDER BY |      |
+| HAVING   |      |
+| GROUP BY |      |
+| SELECT   |      |
+| WHERE    |      |
+
+<br>
+
+### 3.3. Ex3
+
+On a une table
+
+```sql
+#account (ID INT, AccountName VARCHAR(200))
+```
+
+Et un paramètre @userFilter de type INT pouvant contenir un ID de la table #account<br>
+Écrire une requête qui nous retourne le contenu de la table #account filtrée sur la variable @userFilter 
+que sa valeur soit définie ou non. Tous les enregistrements devront être retournés si la valeur est NULL.
+
+---
+
+## 4. Différence entre DELETE et un TRUNCATE
+
+```sql
+CREATE TABLE #test (ID INT IDENTITY, Code VARCHAR(50))
+
+-- remplissage de la table
+INSERT INTO #test (Code)
+SELECT 'PORTFOLIO'
+
+-- Début de la transaction
+BEGIN TRAN Transaction1
+
+-- vidange de la table
+TRUNCATE TABLE #test
+
+-- remplissage de la table
+INSERT INTO #test (Code)
+SELECT 'CLUSTER'
+
+ROLLBACK
+
+-- visualisation des données
+SELECT ID, Code FROM #test
+```
+
+Que vais-je obtenir, à l'exécution du script ci-dessus et pourquoi ?
+
+Donner l'ID, et le Code pour chaque ligne lorsqu'il y a un retour
+
+---
 
 ## 5. Jointures
 

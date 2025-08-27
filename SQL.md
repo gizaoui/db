@@ -308,6 +308,11 @@ Répartition des données sur un diagramme de *Venn*.
 
 ![08](pic/08.png)
 
+<br>
+
+---
+
+<br>
 
 ### 2.2. Sélection des données
 
@@ -315,6 +320,7 @@ Répartition des données sur un diagramme de *Venn*.
 
 ![09](pic/09.png)
 
+Requête :
 
 ```sql
 SELECT T1.STR "T1", T2.STR "T2", T3.STR "T2"
@@ -324,11 +330,26 @@ LEFT JOIN T3 ON T1.ID=T3.ID
 ORDER BY T1.STR, T2.STR, T3.STR;
 ```
 
+Résultat :
+
+| T1 | T2 | T3 |
+| -  | -  | -  |
+| A  |    |    |
+| B  |    |    |
+| C  |    |    |
+| D  | L  |    |
+| E  | M  |    |
+| F  | N  | V  |
+| G  |	  | T  |
+| H  |    | U  |
+
+---
 
 #### 2.2.2. Union de l'intersection entre les tables *T1*, *T2* et de l'intersection entre les tables *T1*, *T3* 
 
 ![10](pic/10.png)
 
+Requête :
 
 ```sql
 SELECT T1.STR "T1", T2.STR "T2", T3.STR "T3"
@@ -337,6 +358,19 @@ LEFT JOIN T2 ON T1.ID=T2.ID
 LEFT JOIN T3 ON T1.ID=T3.ID
 WHERE (T2 IS NOT NULL OR T3 IS NOT NULL);
 ```
+
+Résultat :
+
+| T1 | T2 | T3 |
+| -  | -  | -  |
+| D  | L  |    |
+| E  | M  |    |
+| F  | N  | V  |
+| G  |    | T  |
+| H  |    | U  |
+
+
+
 
 
 

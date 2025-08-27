@@ -35,7 +35,7 @@ Les données communes sont associées deux à deux pour éviter une duplication 
 
 Données communes.
 
-| T1.ID | T1.STR | T2.STR |
+| ID | T1 | T2 |
 | - | - | - |
 | 3 | C | J |
 | 4 | D | K |
@@ -281,7 +281,7 @@ Les données communes sont associées deux à deux pour éviter une duplication 
 
 Données communes aux table *T1* et *T2*.
 
-| ID | T1.STR | T2.ID |
+| ID | T1 | T2 |
 | - | - | -  |
 | 4 | D | L  |
 | 5 | E | M  |
@@ -289,7 +289,7 @@ Données communes aux table *T1* et *T2*.
 
 Données communes aux table *T1* et *T3*.
 
-| ID | T1.STR | T3.ID |
+| ID | T1 | T3 |
 | - | - | -  |
 | 6 | F | V  |
 | 4 | G | T  |
@@ -297,7 +297,7 @@ Données communes aux table *T1* et *T3*.
 
 Données communes aux table *T2* et *T3*.
 
-| ID | T2.STR | T3.ID |
+| ID | T2 | T3 |
 | -  | - | -  |
 |  6 | N | V  |
 | 15 | O | W  |

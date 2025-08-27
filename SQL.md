@@ -1,5 +1,9 @@
 # SQL
 
+Les requêtes ont été testées avec la base de données [SQLite](https://sqlitebrowser.org/) 
+avec la release [3-13-1](https://sqlitebrowser.org/blog/version-3-13-1-released/).
+
+
 ## 1. Diagrammes à deux cercle
 
 ### 1.1. Création des tables

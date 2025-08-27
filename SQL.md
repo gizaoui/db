@@ -27,9 +27,9 @@ Les données communes sont associées deux à deux pour éviter une duplication 
 | - | - | -  | - |
 | 1 | A |  8 | H |
 | 2 | B |  9 | I |
-| **3** | **C** |  **3** | **J** |
-| **4** | **D** |  **4** | **K** |
-| **5** | **E** |  **5** | **L** |
+| 3 | C |  3 | J |
+| 4 | D |  4 | K |
+| 5 | E |  5 | L |
 | 6 | F | 13 | M |
 | 7 | G | 24 | N |
 
@@ -53,6 +53,8 @@ Répartition des données sur un diagramme de *Venn*.
 <br>
 
 ### 1.2. Sélection des données
+
+Les trois espaces du diagramme induisent $\frac{1 - 2^{3+1}}{1 - 2}=7$ combinaisons possibles.
 
 #### 1.2.1. Données de la table *T1*
 

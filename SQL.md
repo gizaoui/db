@@ -25,14 +25,22 @@ Les données communes sont associées deux à deux pour éviter une duplication 
 | - | - | -  | - |
 | 1 | A |  8 | H |
 | 2 | B |  9 | I |
-| 3 | **C** |  3 | **J** |
-| 4 | **D** |  4 | **K** |
-| 5 | **E** |  **5** | L |
+| **3** | **C** |  **3** | **J** |
+| **4** | **D** |  **4** | **K** |
+| **5** | **E** |  **5** | **L** |
 | 6 | F | 13 | M |
 | 7 | G | 24 | N |
 
+Données communes.
 
-Répartition des données via le diagramme de *Venn*.
+| T1.ID | T1.STR | T2.STR |
+| - | - | - |
+| 3 | C | J |
+| 4 | D | K |
+| 5 | E | L |
+
+
+Répartition des données sur un diagramme de *Venn*.
 
 ![00](pic/00.png)
 
@@ -243,20 +251,59 @@ Résultat :
 DROP TABLE IF EXISTS "T1";
 DROP TABLE IF EXISTS "T2";
 DROP TABLE IF EXISTS "T3";
+
 CREATE TABLE "T1" ("ID"	INTEGER,"STR" TEXT);
 CREATE TABLE "T2" ("ID"	INTEGER,"STR" TEXT);
 CREATE TABLE "T3" ("ID"	INTEGER,"STR" TEXT);
-```
 
-Les données communes sont associées deux à deux pour éviter une duplication liée au produit cartésien.
-
-![08](pic/08.png)
-
-```sql
 INSERT INTO T1 VALUES (1, 'A'), (2, 'B'), (3, 'C'), (4, 'D'),  (5, 'E'),  (6, 'F'), (7, 'G'), (8, 'H');
 INSERT INTO T2 VALUES (9, 'I'), (10, 'J'), (11, 'K'), (4, 'L'), (5, 'M'), (6, 'N'), (15, 'O'), (16, 'P');
 INSERT INTO T3 VALUES (17, 'Q'), (18, 'R'), (19, 'S'),  (7, 'T'), (8, 'U'), (6, 'V'), (15, 'W'), (16, 'X');
 ```
+
+Les données communes sont associées deux à deux pour éviter une duplication liée au produit cartésien.
+
+| T1.ID | T1.STR | T2.ID | T2.STR | T3.ID | T3.STR |
+| - | - | -   | -  | -  | -  |
+| 1 | A |  9  | I  | 17 | Q  |
+| 2 | B | 10  | J  | 18 | R  |
+| 3 | C | 11  | K  | 19 | S  |
+| 4 | D |  4  | L  |  7 | T  |
+| 5 | E |  5  | M  |  8 | U  |
+| 6 | F |  6  | N  |  6 | V  |
+| 7 | G | 15  | O  | 15 | W  |
+| 8 | H | 16  | P  | 16 | X  |
+
+
+Données communes aux table *T1* et *T2*.
+
+| ID | T1.STR | T2.ID |
+| - | - | -  |
+| 4 | D | L  |
+| 5 | E | M  |
+| 6 | F | N  |
+
+Données communes aux table *T1* et *T3*.
+
+| ID | T1.STR | T3.ID |
+| - | - | -  |
+| 6 | F | V  |
+| 4 | G | T  |
+| 5 | H | U  |
+
+Données communes aux table *T1* et *T3*.
+
+| ID | T2.STR | T3.ID |
+| -  | - | -  |
+|  6 | N | V  |
+| 15 | O | W  |
+| 16 | P | X  |
+
+
+Répartition des données sur un diagramme de *Venn*.
+
+![08](pic/08.png)
+
 
 ### 2.2. Sélection des données
 

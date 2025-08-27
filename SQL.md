@@ -7,18 +7,30 @@
 ```sql
 DROP TABLE IF EXISTS "T1";
 DROP TABLE IF EXISTS "T2";
+
 CREATE TABLE "T1" ("ID"	INTEGER,"STR" TEXT);
 CREATE TABLE "T2" ("ID"	INTEGER,"STR" TEXT);
+
+INSERT INTO T1 VALUES (1, 'A'), (2, 'B'), (3, 'C'), (4, 'D'), (5, 'E'), (6, 'F'), (7, 'G');
+INSERT INTO T2 VALUES (8, 'H'), (9, 'I'), (3, 'J'), (4, 'K'), (5, 'L'), (13, 'M'), (14, 'N');
 ```
 
 Les données communes sont associées deux à deux pour éviter une duplication liée au produit cartésien.
 
-![00](pic/00.png)
+| T1.ID | T1.STR | T2.ID | T2.STR |
+| - | - | -  | - |
+| 1 | A |  8 | H |
+| 2 | B |  9 | I |
+| 3 | C |  3 | J |
+| 4 | D |  4 | K |
+| 5 | E |  5 | L |
+| 6 | F | 13 | M |
+| 7 | G | 24 | N |
 
-```sql
-INSERT INTO T1 VALUES (1, 'A'), (2, 'B'), (3, 'C'), (4, 'D'), (5, 'E'), (6, 'F'), (7, 'G');
-INSERT INTO T2 VALUES (8, 'H'), (9, 'I'), (3, 'J'), (4, 'K'), (5, 'L'), (13, 'M'), (14, 'N');
-```
+
+Répartition des données via le diagramme de *Venn*.
+
+![00](pic/00.png)
 
 
 ### 1.2. Sélection des données

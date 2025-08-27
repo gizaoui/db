@@ -1,12 +1,15 @@
-# SQL
+
+
+## 5. Jointures
 
 Les requêtes ont été testées avec la base de données [SQLite](https://sqlitebrowser.org/) 
 avec la release [3-13-1](https://sqlitebrowser.org/blog/version-3-13-1-released/).
 
 
-## 1. Diagrammes à deux cercle
 
-### 1.1. Création des tables
+### 5.1. Diagrammes à deux cercle
+
+#### 5.1.1. Création des tables
 
 ```sql
 DROP TABLE IF EXISTS "T1";
@@ -19,7 +22,7 @@ INSERT INTO T1 VALUES (1, 'A'), (2, 'B'), (3, 'C'), (4, 'D'), (5, 'E'), (6, 'F')
 INSERT INTO T2 VALUES (8, 'H'), (9, 'I'), (3, 'J'), (4, 'K'), (5, 'L'), (13, 'M'), (14, 'N');
 ```
 
-#### 1.1.1. Association
+##### 5.1.1.1. Association
 
 Les données communes sont associées deux à deux pour éviter une duplication liée aux produits cartésiens.
 
@@ -52,11 +55,11 @@ Répartition des données sur un diagramme de *Venn*.
 
 <br>
 
-### 1.2. Sélection des données
+#### 5.1.2. Sélection des données
 
 Les trois espaces du diagramme induisent $\frac{1 - 2^{3+1}}{1 - 2}=7$ combinaisons possibles.
 
-#### 1.2.1. Données de la table *T1*
+##### 5.1.2.1. Données de la table *T1*
 
 ![01](pic/01.png)
 
@@ -83,7 +86,7 @@ Résultat :
 
 ---
 
-#### 1.2.2. Données de la table *T2*
+##### 5.1.2.2. Données de la table *T2*
 
 ![02](pic/02.png)
 
@@ -110,11 +113,11 @@ Résultat :
 
 ---
 
-#### 1.2.3. Données communes des table *T1* et *T2* 
+##### 5.1.2.3. Données communes des table *T1* et *T2* 
 
 ![03](pic/03.png)
 
-##### 1.2.3.1. Avec jointure 
+###### 5.1.2.3.1. Avec jointure 
 
 Requête :
 
@@ -134,7 +137,7 @@ Résultat :
 | E  |	L |
 
 
-##### 1.2.3.1. Sans jointure
+###### 5.1.2.3.1. Sans jointure
 
 Requête :
 
@@ -159,7 +162,7 @@ Résultat :
 
 ---
 
-#### 1.2.4. Données exclusivement liées à la table *T1*
+##### 5.1.2.4. Données exclusivement liées à la table *T1*
 
 ![04](pic/04.png)
 
@@ -184,7 +187,7 @@ Résultat :
 
 ---
 
-#### 1.2.5. Données exclusivement liées à la table *T2*
+##### 5.1.2.5. Données exclusivement liées à la table *T2*
 
 ![05](pic/05.png)
 
@@ -209,7 +212,7 @@ Résultat :
 
 ---
 
-#### 1.2.6. Totalité de la base de données
+##### 5.1.2.6. Totalité de la base de données
 
 ![06](pic/06.png)
 
@@ -240,7 +243,7 @@ Résultat :
 
 ---
 
-#### 1.2.7. Données exclusivement liées à la table *T1* ou à la table *T2*
+##### 5.1.2.7. Données exclusivement liées à la table *T1* ou à la table *T2*
 
 ![06](pic/07.png)
 
@@ -271,11 +274,11 @@ Résultat :
 
 <br>
 
-## 2. Diagrammes à trois cercle
+### 5.2. Diagrammes à trois cercle
 
 
 
-### 2.1. Création des tables
+#### 5.2.1. Création des tables
 
 ```sql
 DROP TABLE IF EXISTS "T1";
@@ -291,7 +294,7 @@ INSERT INTO T2 VALUES (9, 'I'), (10, 'J'), (11, 'K'), (4, 'L'), (5, 'M'), (6, 'N
 INSERT INTO T3 VALUES (17, 'Q'), (18, 'R'), (19, 'S'),  (7, 'T'), (8, 'U'), (6, 'V'), (15, 'W'), (16, 'X');
 ```
 
-#### 2.1.1. Association
+##### 5.2.1.1. Association
 
 Les données communes sont associées deux à deux pour éviter une duplication liée aux produits cartésiens.
 
@@ -342,14 +345,14 @@ Répartition des données sur un diagramme de *Venn*.
 
 <br>
 
-### 2.2. Sélection des données
+#### 5.2.2. Sélection des données
 
 Les sept espaces du diagramme induisent $\frac{1 - 2^{7+1}}{1 - 2}=127$ combinaisons possibles.
 
 On en sélectionnera deux.
 
 
-#### 2.2.1. Données de la table *T1*
+##### 5.2.2.1. Données de la table *T1*
 
 ![09](pic/09.png)
 
@@ -378,7 +381,7 @@ Résultat :
 
 ---
 
-#### 2.2.2. Union de l'intersection entre les tables *T1*, *T2* et de l'intersection entre les tables *T1*, *T3* 
+##### 5.2.2.2. Union de l'intersection entre les tables *T1*, *T2* et de l'intersection entre les tables *T1*, *T3* 
 
 ![10](pic/10.png)
 
@@ -405,9 +408,9 @@ Résultat :
 
 
 
-## 3. Classement
+### 5.3. Classement
 
-### 3.1. Création des tables
+#### 5.3.1. Création des tables
 
 ```sql
 DROP TABLE IF EXISTS "VENTES";
@@ -423,7 +426,7 @@ INSERT INTO "VENTES" ("ID", "PRENOM", "NOM", "MOIS", "CA") VALUES
 (8, 'Alexandre', 'Durand', 7, 1000);
 ```
 
-### 3.2 Classement de données
+#### 5.3.2 Classement de données
 
 Classement selon le CA décroissant avec ajout d'un *ROWNUM*.
 

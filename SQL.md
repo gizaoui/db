@@ -21,9 +21,9 @@ Les données communes sont associées deux à deux pour éviter une duplication 
 | - | - | -  | - |
 | 1 | A |  8 | H |
 | 2 | B |  9 | I |
-| 3 | C |  3 | J |
-| 4 | D |  4 | K |
-| 5 | E |  5 | L |
+| 3 | **C** |  3 | **J** |
+| 4 | **D** |  4 | **K** |
+| 5 | **E** |  **5** | L |
 | 6 | F | 13 | M |
 | 7 | G | 24 | N |
 
@@ -39,9 +39,27 @@ Répartition des données via le diagramme de *Venn*.
 
 ![01](pic/01.png)
 
+Requête :
+
 ```sql
-SELECT T1.STR "T1", T2.STR "T2" FROM T1 LEFT JOIN T2 ON T1.ID=T2.ID ORDER BY T1.STR, T2.STR;
+SELECT T1.STR "T1", T2.STR "T2" 
+FROM T1 
+LEFT JOIN T2 ON T1.ID=T2.ID 
+ORDER BY T1.STR, T2.STR;
 ```
+
+Résultat :
+
+| T1 | T2 |
+| -  | -  |
+| A  |    |
+| B  |    |	
+| C  | J  |
+| D  | K  |
+| E  | L  |
+| F  |    |
+| G  |    |
+
 
 #### 1.2.2. Données de la table *T2*
 

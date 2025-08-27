@@ -114,6 +114,8 @@ Résultat :
 
 ![03](pic/03.png)
 
+##### 1.2.3.1. Avec jointure 
+
 Requête :
 
 ```sql
@@ -130,6 +132,30 @@ Résultat :
 | C  |	J |
 | D  |	K |
 | E  |	L |
+
+
+##### 1.2.3.1. Sans jointure
+
+Requête :
+
+```sql
+SELECT T1.ID
+FROM T1
+WHERE EXISTS (
+  SELECT T2.ID
+  FROM T2
+  WHERE T1.ID=T2.ID
+)
+ORDER BY T1.ID;
+```
+
+Résultat :
+
+| T1 |
+| -  |
+| 3  |
+| 4  |
+| 5  |
 
 ---
 

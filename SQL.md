@@ -54,6 +54,10 @@ Répartition des données sur un diagramme de *Venn*.
 
 ### 1.2. Sélection des données
 
+Les sept espaces du diagramme induisent $\frac{1 - 2^{7+1}}{1 - 2}=127$ combinaisons possibles.
+
+On en sélectionnera deux.
+
 #### 1.2.1. Données de la table *T1*
 
 ![01](pic/01.png)

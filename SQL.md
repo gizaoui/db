@@ -284,9 +284,11 @@ CREATE TABLE #Table3(ID INT, DefaultDescription VARCHAR(1000))
 
 Tous les cas de figure seront traités.
 
-Ceux du test sont les suivants :
+**Pas uniquement ceux du test :**
 
 - [Données communes entre les deux table](https://github.com/gizaoui/db/blob/main/SQL.md#5123-donn%C3%A9es-communes-des-table-t1-et-t2)
+- [Données de la table *T1*](https://github.com/gizaoui/db/blob/main/SQL.md#5121-donn%C3%A9es-de-la-table-t1)
+- [Données exclusivement liées à la table T1 ou à la table T2](https://github.com/gizaoui/db/blob/main/SQL.md#5127-donn%C3%A9es-exclusivement-li%C3%A9es-%C3%A0-la-table-t1-ou-%C3%A0-la-table-t2)
 
 
 #### 5.1.1. Création des tables

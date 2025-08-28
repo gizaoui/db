@@ -51,6 +51,30 @@ Qu'obtiendrai-je comme résultat et expliquer pourquoi ?
 
 Donner l'ID, et le Code pour chaque ligne lorsqu'il y a un retour
 
+Traitement équivalent.
+
+```sql
+-- création de la table
+DROP TABLE IF EXISTS "test";
+CREATE TABLE test (ID INTEGER PRIMARY KEY AUTOINCREMENT, Code TEXT);
+	
+-- remplissage de la table
+INSERT INTO test (Code) SELECT 'PORTFOLIO';
+
+ -- execution d'une sous procédure
+ -- EXEC #Niveau2
+ 
+DELETE FROM test;
+ 
+INSERT INTO test (Code)
+      SELECT 'THIRDPARTY'
+UNION SELECT 'CLUSTER'
+UNION SELECT 'ENTITY';
+
+-- visualisation des données
+SELECT ID, Code  FROM test;
+```
+
 <br>
 
 ### 1.3. Ex2
@@ -93,6 +117,32 @@ Qu'obtiendrai-je comme résultat et expliquer pourquoi ?
 
 Donner l'ID, et le Code pour chaque ligne lorsqu'il y a un retour
 
+Traitement équivalent.
+
+```sql
+-- création de la table
+DROP TABLE IF EXISTS "test";
+CREATE TABLE test (ID INTEGER PRIMARY KEY AUTOINCREMENT, Code TEXT);
+	
+-- remplissage de la table
+INSERT INTO test (Code) SELECT 'PORTFOLIO';
+
+ -- execution d'une sous procédure
+ -- EXEC #Niveau2
+ 
+-- recréation de la table
+DROP TABLE IF EXISTS "test";
+CREATE TABLE test (ID INTEGER PRIMARY KEY AUTOINCREMENT, Code TEXT);
+ 
+INSERT INTO test (Code)
+      SELECT 'THIRDPARTY'
+UNION SELECT 'CLUSTER'
+UNION SELECT 'ENTITY';
+
+-- visualisation des données
+SELECT ID, Code  FROM test;
+```
+
 ---
 
 <br>
@@ -107,7 +157,7 @@ WHEN @test LIKE 'PORTFOLIO%TRANSACTION' THEN 3
 ELSE 4 END
 ```
 
-La requête a été testée avec la base de données [SQLite](https://sqlitebrowser.org/) 
+La requête analogue a été testée avec la base de données [SQLite](https://sqlitebrowser.org/) 
 avec la release [3-13-1](https://sqlitebrowser.org/blog/version-3-13-1-released/).
 
 Requête :
@@ -219,6 +269,15 @@ Donner l'ID, et le Code pour chaque ligne lorsqu'il y a un retour
 
 Les requêtes ont été testées avec la base de données [SQLite](https://sqlitebrowser.org/) 
 avec la release [3-13-1](https://sqlitebrowser.org/blog/version-3-13-1-released/).
+
+Les noms des tables et des champs ci-dessous ont été armonisés/modifiés afin de faciliter la compréhension.
+
+```sql
+CREATE TABLE #Table1(ID INT, Code VARCHAR(50))
+CREATE TABLE #Table2(ID INT, DefaultLabel VARCHAR(200))
+CREATE TABLE #Table3(ID INT, DefaultDescription VARCHAR(1000))
+```
+
 
 
 ### 5.1. Diagrammes à deux cercle
@@ -491,8 +550,8 @@ Résultat :
 ### 5.2. Diagrammes à trois cercle
 
 
-
 #### 5.2.1. Création des tables
+
 
 ```sql
 DROP TABLE IF EXISTS "T1";

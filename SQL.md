@@ -270,7 +270,7 @@ Donner l'ID, et le Code pour chaque ligne lorsqu'il y a un retour
 Les requêtes ont été testées avec la base de données [SQLite](https://sqlitebrowser.org/) 
 avec la release [3-13-1](https://sqlitebrowser.org/blog/version-3-13-1-released/).
 
-Les noms des tables et des champs ci-dessous ont été armonisés/re-écrite afin de faciliter la compréhension.
+Les noms des tables et des champs ci-dessous ont été armonisés/re-écrites afin de faciliter la compréhension des traitements.
 
 ```sql
 CREATE TABLE #Table1(ID INT, Code VARCHAR(50))

@@ -107,7 +107,28 @@ WHEN @test LIKE 'PORTFOLIO%TRANSACTION' THEN 3
 ELSE 4 END
 ```
 
+La requête a été testée avec la base de données [SQLite](https://sqlitebrowser.org/) 
+avec la release [3-13-1](https://sqlitebrowser.org/blog/version-3-13-1-released/).
+
+Requête :
+
+Le caractère **%** correspond à une chaîne de caratère quelconque.
+
+```sql
+SELECT CASE WHEN test LIKE 'TRANSACTION%' THEN 1
+WHEN test LIKE 'PORTFOLIO%' THEN 2
+WHEN test LIKE 'PORTFOLIO%TRANSACTION' THEN 3
+ELSE 4 END "Resut"
+FROM (SELECT 'PORTFOLIO_TRANSACTION' "test");
+```
+
 Resultat :
+
+La requête renvoie la première correspondance trouvée.
+
+|Resut|
+| - |
+| 2 | 
 
 ---
 

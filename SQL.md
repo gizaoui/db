@@ -270,7 +270,7 @@ Donner l'ID, et le Code pour chaque ligne lorsqu'il y a un retour
 Les requêtes ont été testées avec la base de données [SQLite](https://sqlitebrowser.org/) 
 avec la release [3-13-1](https://sqlitebrowser.org/blog/version-3-13-1-released/).
 
-Les noms des tables et des champs ci-dessous ont été armonisés/modifiés afin de faciliter la compréhension.
+Les noms des tables et des champs ci-dessous ont été armonisés/re-écrite afin de faciliter la compréhension.
 
 ```sql
 CREATE TABLE #Table1(ID INT, Code VARCHAR(50))
@@ -415,23 +415,23 @@ Résultat :
 Requête :
 
 ```sql
-SELECT T1.ID
+SELECT T1.ID, T1.STR
 FROM T1
 WHERE EXISTS (
   SELECT T2.ID
   FROM T2
   WHERE T1.ID=T2.ID
 )
-ORDER BY T1.ID;
+ORDER BY T1.STR;
 ```
 
 Résultat :
 
-| T1 |
-| -  |
-| 3  |
-| 4  |
-| 5  |
+| ID | STR |
+| - | - |
+| 3 | C |
+| 4 | D |
+| 5 | E |
 
 ---
 

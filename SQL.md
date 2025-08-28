@@ -282,6 +282,13 @@ CREATE TABLE #Table3(ID INT, DefaultDescription VARCHAR(1000))
 
 ### 5.1. Diagrammes à deux cercle
 
+Tous les cas de figure seront traités.
+
+Ceux du test sont les suivants :
+
+- [Données communes entre les deux table](https://github.com/gizaoui/db/blob/main/SQL.md#5123-donn%C3%A9es-communes-des-table-t1-et-t2)
+
+
 #### 5.1.1. Création des tables
 
 ```sql

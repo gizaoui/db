@@ -12,9 +12,30 @@ Dans SQL Server, les tables temporaires globales sont visibles par toutes les se
 
 <br>
 
-### 1.2. Ex1
+### 1.2. Re-création table temporaire
+
+La table temporaire local étant conservée durant toute la session, elle ne peut être re-écrite dans la `PROCEDURE #Niveau2`.<br>
+Seule les donnnées de la première procédure seront affichées.
 
 ```sql
+DROP PROCEDURE IF EXISTS dbo.#Niveau2;
+GO
+
+CREATE PROCEDURE #Niveau2
+AS
+  -- création de la table
+  CREATE TABLE #test (ID INT IDENTITY, Code VARCHAR(50))
+
+  -- remplissage de la table
+  INSERT INTO #test (Code)
+        SELECT 'THIRDPARTY'
+  UNION SELECT 'CLUSTER'
+  UNION SELECT 'ENTITY'
+GO
+
+DROP PROCEDURE IF EXISTS dbo.#Niveau1;
+GO
+
 CREATE PROCEDURE #Niveau1
 AS
   -- création de la table
@@ -30,13 +51,32 @@ AS
   -- visualisation des données
   SELECT ID, Code  FROM #test
 GO
+
+EXEC #Niveau1
 ```
 
+Résultat :
+
+| ID | Code |
+|  - | -    |
+| 1  | PORTFOLIO |
+
+
+
+<br>
+
+### 1.3. TRUNCATE
+
+La table est vidée avant l'écriture de trois noueaux enregistrements.
+
 ```sql
+DROP PROCEDURE IF EXISTS dbo.#Niveau2
+GO
+
 CREATE PROCEDURE #Niveau2
 AS
-  -- création de la table
-  CREATE TABLE #test (ID INT IDENTITY, Code VARCHAR(50))
+  -- Vidange de la table
+  TRUNCATE TABLE #test
 
   -- remplissage de la table
   INSERT INTO #test (Code)
@@ -44,43 +84,10 @@ AS
   UNION SELECT 'CLUSTER'
   UNION SELECT 'ENTITY'
 GO
-```
 
-Les 2 procédures ayant été créées au préalable, j'exécute la procédure #niveau1. 
-Qu'obtiendrai-je comme résultat et expliquer pourquoi ?
+DROP PROCEDURE IF EXISTS dbo.#Niveau1;
+GO
 
-Donner l'ID, et le Code pour chaque ligne lorsqu'il y a un retour
-
-Traitement équivalent.
-
-```sql
--- création de la table
-DROP TABLE IF EXISTS "test";
-CREATE TABLE test (ID INTEGER PRIMARY KEY AUTOINCREMENT, Code TEXT);
-	
--- remplissage de la table
-INSERT INTO test (Code) SELECT 'PORTFOLIO';
-
- -- execution d'une sous procédure
- -- EXEC #Niveau2
- 
-DELETE FROM test;
- 
-INSERT INTO test (Code)
-      SELECT 'THIRDPARTY'
-UNION SELECT 'CLUSTER'
-UNION SELECT 'ENTITY';
-
--- visualisation des données
-SELECT ID, Code  FROM test;
-```
-
-<br>
-
-### 1.3. Ex2
-
-
-```sql
 CREATE PROCEDURE #Niveau1
 AS
   -- création de la table
@@ -96,54 +103,18 @@ AS
   -- visualisation des données
   SELECT ID, Code FROM #test
 GO
+
+EXEC #Niveau1
 ```
 
-```sql
-CREATE PROCEDURE #Niveau2
-AS
-  -- Vidange de la table
-  TRUNCATE TABLE #test
+Résultat :
 
-  -- remplissage de la table
-  INSERT INTO #test (Code)
-        SELECT 'THIRDPARTY'
-  UNION SELECT 'CLUSTER'
-  UNION SELECT 'ENTITY'
-GO
-```
+| ID | Code |
+|  - | -    |
+|  1 | CLUSTER    |
+|  2 | ENTITY     |
+|  3 | THIRDPARTY |
 
-Les 2 procédures ayant été créées au préalable, j'exécute la procédure #niveau1.
-Qu'obtiendrai-je comme résultat et expliquer pourquoi ?
-
-Donner l'ID, et le Code pour chaque ligne lorsqu'il y a un retour
-
-Traitement équivalent.
-
-```sql
--- création de la table
-DROP TABLE IF EXISTS "test";
-CREATE TABLE test (ID INTEGER PRIMARY KEY AUTOINCREMENT, Code TEXT);
-	
--- remplissage de la table
-INSERT INTO test (Code) SELECT 'PORTFOLIO';
-
- -- execution d'une sous procédure
- -- EXEC #Niveau2
- 
--- recréation de la table
-DROP TABLE IF EXISTS "test";
-CREATE TABLE test (ID INTEGER PRIMARY KEY AUTOINCREMENT, Code TEXT);
- 
-INSERT INTO test (Code)
-      SELECT 'THIRDPARTY'
-UNION SELECT 'CLUSTER'
-UNION SELECT 'ENTITY';
-
--- visualisation des données
-SELECT ID, Code  FROM test;
-```
-
----
 
 <br>
 

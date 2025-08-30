@@ -15,7 +15,7 @@ Dans SQL Server, les tables temporaires globales sont visibles par toutes les se
 ### 1.2. Re-création table temporaire
 
 La table temporaire local étant conservée durant toute la session, elle ne peut être re-écrite dans la `PROCEDURE #Niveau2`.<br>
-Seule les donnnées de la première procédure seront affichées.
+Seules les donnnées de la première procédure seront affichées.
 
 ```sql
 DROP PROCEDURE IF EXISTS dbo.#Niveau2;
@@ -61,9 +61,7 @@ Résultat :
 |  - | -    |
 | 1  | PORTFOLIO |
 
-
-
-<br>
+---
 
 ### 1.3. TRUNCATE
 
@@ -115,21 +113,21 @@ Résultat :
 |  2 | ENTITY     |
 |  3 | THIRDPARTY |
 
-
-<br>
+---
 
 ## 2. Case
+
+Le caractère **%** correspond à une chaîne de caractère quelconque.
+
+La requête renvoie la première correspondance trouvée.
 
 ```sql
 DECLARE @test VARCHAR(50) = 'PORTFOLIO_TRANSACTION'
 SELECT CASE WHEN @test LIKE 'TRANSACTION%' THEN 1
 WHEN @test LIKE 'PORTFOLIO%' THEN 2
 WHEN @test LIKE 'PORTFOLIO%TRANSACTION' THEN 3
-ELSE 4 END
+ELSE 4 END 'TRANSACTION';
 ```
-
-La requête analogue a été testée avec la base de données [SQLite](https://sqlitebrowser.org/) 
-avec la release [3-13-1](https://sqlitebrowser.org/blog/version-3-13-1-released/).
 
 Requête :
 
@@ -147,7 +145,7 @@ Resultat :
 
 La requête renvoie la première correspondance trouvée.
 
-|Resut|
+| TRANSACTION |
 | - |
 | 2 | 
 
@@ -157,9 +155,7 @@ La requête renvoie la première correspondance trouvée.
 
 ## 3. Clauses SQL
 
-### 3.1. Ex1
-
-Dans quel apparaissent les clauses ci-dessous dans un SELECT ?
+### 3.1. Ordre d'apparition dans un *SELECT*
 
 | Clauses  | Ordre |
 |   -      | -     |
@@ -172,9 +168,7 @@ Dans quel apparaissent les clauses ci-dessous dans un SELECT ?
 
 <br>
 
-### 3.2. Ex2
-
-Dans quel ordre sont évaluées, par le moteur SQL, les clauses ci-dessous, dans un SELECT ?
+### 3.2. Ordre d'évaluation d'un un *SELECT*
 
 | Clauses  | Ordre |
 |   -      | -     |

@@ -858,7 +858,7 @@ Résultat :
 ## 7. SQL Profiler
 
 
-La répartition des consomations des traitements peut être visualisé à travers un plan d'exécution.
+La répartition des consomations des traitements peut être visualisée à travers un plan d'exécution.
 
 
 Analyse des procédures du traitement de [re-création d'une table temporaire](#12-re-création-table-temporaire).

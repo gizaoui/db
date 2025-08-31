@@ -7,6 +7,7 @@
 Les procédures ont été testées avec la base de données [SQL Server](https://www.howtoforge.com/how-to-install-microsoft-sql-server-on-debian-12)
 via le client [Azure Data Studio](https://learn.microsoft.com/fr-fr/azure-data-studio/download-azure-data-studio?tabs=win-install%2Cwin-user-install%2Credhat-install%2Cwindows-uninstall%2Credhat-uninstall).
 
+<br>
 
 ### 1.1.  Différence entre une table temporaire locale et une table temporaire globale
 
@@ -298,6 +299,13 @@ Résultat :
 Les requêtes ont été testées avec la base de données [SQL Server](https://www.howtoforge.com/how-to-install-microsoft-sql-server-on-debian-12)
 via le client [Azure Data Studio](https://learn.microsoft.com/fr-fr/azure-data-studio/download-azure-data-studio?tabs=win-install%2Cwin-user-install%2Credhat-install%2Cwindows-uninstall%2Credhat-uninstall).
 
+
+<br>
+
+Un `TRUNCATE` supprime toutes les lignes d’une table ou des partitions spécifiées d’une table, sans journaliser les suppressions de ligne individuelles.<br>
+Un `TRUNCATE TABLE` est similaire à l’instruction `DELETE` sans la clause `WHERE`.<br>
+Toutefois un `TRUNCATE TABLE` est plus rapide et utilise moins de ressources système et de journal des transactions.
+
 <br>
 
 ```sql
@@ -328,7 +336,9 @@ GO
 SELECT ID, Code FROM #test
 ```
 
-La requête renvoie les données <ins>d'avant le debut de la TRANSACTION</ins>.
+La requête renvoie les données <ins>d'avant le debut de la TRANSACTION</ins>.<br>
+:warning: On constate qu'il est ici possible de récupérer les données du première enregistrement malgré le `TRUNCATE`.
+
 
 | ID | Code |
 | -  | -  |
